@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,27 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <script src="app.js"></script>
-    <div id="app"> 
-        <h1>TODOS:</h1>
+    <div id="app">
+        <h1>{{title}}:</h1>
+        <input type="text" class="nes-input" placeholder="Add todo..." v-on:keyup.enter="addTodo">
+        <ul>
+            <li v-for="todo in todos" class="flex">
+                <label>
+                    <input type="checkbox" class="nes-checkbox" v-model="todo.done">
+                    <span>&nbsp</span>
+                </label>
+                <del v-if="todo.done">{{ todo.text }}</del>
+                <span v-else>{{ todo.text }}</span>
+                <div class="space"></div>
+                <button class="nes-btn is-error padding" v-on:click="removeTodo(todo.id)">X</button>
+            </li>
+        </ul>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>

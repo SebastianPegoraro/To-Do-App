@@ -1,12 +1,16 @@
 new Vue({
     el: "#app",
     data: {
-      todos: [
-        { text: 'todo 1', done: false, id: Date.now() },
-        { text: 'todo 2', done: false, id: Date.now() + 1 }
-      ]
+        title: 'To-Do',
+        todos: []
     },
     methods: {
-  
+        addTodo({target}){
+          this.todos.push({text: target.value, done: false, id: Date.now()})
+        target.value = ''
+      },
+      removeTodo(id) {
+          this.todos = this.todos.filter(todo => todo.id !== id)
+      }
     }
   })
